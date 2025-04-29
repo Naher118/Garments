@@ -1,8 +1,10 @@
-from odoo import fields, models
+from odoo import models, fields
 
-class AcquirerSSLCommerz(models.Model):
-    _inherit = 'payment.acquirer'
+class PaymentAcquirerSSLCommerz(models.Model):
+    _name = 'sslcommerz.payment.acquirer'
+    _description = 'SSLCommerz Acquirer Settings'
 
-    provider = fields.Selection(selection_add=[('sslcommerz', 'SSLCommerz')])
-    sslcommerz_store_id = fields.Char('Store ID')
-    sslcommerz_store_passwd = fields.Char('Store Password')
+    name = fields.Char('Name', required=True)
+    store_id = fields.Char('Store ID', required=True)
+    store_passwd = fields.Char('Store Password', required=True)
+    sandbox_mode = fields.Boolean('Use Sandbox Mode', default=True)

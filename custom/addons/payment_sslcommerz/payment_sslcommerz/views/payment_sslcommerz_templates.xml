@@ -2,13 +2,15 @@
   <template id="payment_sslcommerz_form" inherit_id="payment.payment_acquirer_form">
     <xpath expr="//div[@id='payment_acquirer_form']" position="inside">
       <t t-if="acquirer.provider == 'sslcommerz'">
-        <input type="hidden" name="store_id" t-att-value="acquirer.sslcommerz_store_id"/>
-        <input type="hidden" name="tran_id" t-att-value="reference"/>
-        <input type="hidden" name="amount" t-att-value="amount"/>
-        <input type="hidden" name="currency" t-att-value="currency"/>
-        <input type="hidden" name="success_url" t-att-value="'/payment/sslcommerz/return'"/>
-        <input type="submit" value="Pay via SSLCommerz"/>
+        <form method="POST" action="/payment/sslcommerz/initiate">
+          <input type="hidden" name="store_id" t-att-value="acquirer.sslcommerz_store_id"/>
+          <input type="hidden" name="tran_id" t-att-value="reference"/>
+          <input type="hidden" name="amount" t-att-value="amount"/>
+          <input type="hidden" name="currency" t-att-value="currency"/>
+          <input type="submit" value="Pay via SSLCommerz"/>
+        </form>
       </t>
     </xpath>
   </template>
 </odoo>
+
